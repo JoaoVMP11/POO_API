@@ -2,9 +2,12 @@ CREATE DATABASE PEDIDOS;
 
 USE PEDIDOS;
 DROP TABLE PEDIDO;
+DROP TABLE CLIENTE;
+DROP TABLE PRODUTO;
+DROP TABLE ITEM_PRODUTO CASCADE;
 
 create table PEDIDO (
-NUMERO INT PRIMARY KEY,
+NUMERO INT PRIMARY KEY auto_increment,
 DATA DATE not null,
 PRAZO_ENTREGA DATE,
 RUA varchar(80),
@@ -19,7 +22,7 @@ CODIGO_CLI INT not null
 );
 
 create table CLIENTE (
-CODIGO int not null,
+CODIGO int not null auto_increment,
 NOME varchar(60) not null,
 RUA varchar(80) not null,
 NR INT not null,
@@ -32,7 +35,7 @@ constraint PK_CLIENTE primary key (CODIGO)
 );
 
 create table PRODUTO (
-CODIGO INT not null,
+CODIGO INT not null auto_increment,
 DESCRICAO varchar(80) not null,
 TIPO varchar(10) not null,
 constraint PK_PRODUTO primary key (CODIGO)
