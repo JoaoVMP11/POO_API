@@ -1,9 +1,15 @@
 package pedido;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Pedido {
@@ -15,6 +21,16 @@ public class Pedido {
 	private String CEP;
 	private double total_fatura;
 	private Long id_cli;
+	
+	@ManyToMany
+	@JoinTable(
+			name= "item_produto",
+			joinColumns = @JoinColumn(name = "numero_ped"),	
+			inverseJoinColumns = @JoinColumn(name = "id_pro")
+			)
+	
+	private List<Produto> produtos = new ArrayList<>();
+	
 	public Long getNumero() {
 		return numero;
 	}
