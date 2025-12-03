@@ -1,3 +1,4 @@
+DROP DATABASE PEDIDOS;
 CREATE DATABASE PEDIDOS;
 
 USE PEDIDOS;
@@ -8,8 +9,8 @@ DROP TABLE ITEM_PRODUTO CASCADE;
 
 create table PEDIDO (
 NUMERO INT PRIMARY KEY auto_increment,
-CEP varchar(10),
-TOTAL_FATURA float,
+total_fatura decimal,
+CEP varchar(10),	
 ID_CLI INT not null
 );
 
@@ -37,14 +38,17 @@ create table ITEM_PRODUTO (
 
 alter table ITEM_PRODUTO
    add constraint FK_ITEM_PRODUTO foreign key (CODIGO_PRO)
-      references PRODUTO (CODIGO);
+      references PRODUTO (ID);
       
 alter table ITEM_PRODUTO
    add constraint FK_ITEM_PEDIDO foreign key (CODIGO_PRO)
       references PEDIDO (NUMERO);
       
       alter table PEDIDO
-   add constraint FK_PED_CLIENTE foreign key (CODIGO_CLI)
+   add constraint FK_PED_CLIENTE foreign key (ID_CLI)
       references CLIENTE (CODIGO);
       
-      select * from produto;
+      select * from produto;	
+      select * from cliente;
+      select * from pedido;
+      select * from item_produto;

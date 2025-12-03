@@ -32,8 +32,8 @@ public class Cliente {
 	public String getCEP() {
 		return CEP;
 	}
-	public void setCEP(String cEP) {
-		CEP = cEP;
+	public void setCEP(String CEP) {
+		this.CEP = CEP;
 	}
 	
 	

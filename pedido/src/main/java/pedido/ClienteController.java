@@ -14,41 +14,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/pedido")
-public class PedidoController {
+@RequestMapping(value = "/api/cliente")
+public class ClienteController {
 	
-	@Autowired 
-	PedidoRepository pedidoRepository;
+	@Autowired
+	ClienteRepository clienteRepository;
 	
-
 	@GetMapping
-	public List<Pedido> listarPedidos() {
-		return pedidoRepository.findAll();
+	public List<Cliente> listarTodos() {
+		return clienteRepository.findAll();
 	}
 	
 	@PostMapping
-	public Pedido salvarPedido(@RequestBody Pedido pedido){
-		return pedidoRepository.save(pedido);
+	public Cliente criar(@RequestBody Cliente cliente) {
+		return clienteRepository.save(cliente);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deletarPessoa(@PathVariable Long id) {
-		pedidoRepository.deleteById(id);
+	public void deletarCliente(@PathVariable Long id) {
+		clienteRepository.deleteById(id);
 	}
 	
 	@PutMapping("/{id}")
-	public Pedido atualizarPedido(@PathVariable Long numero, 
-			                      @RequestBody Pedido pedido) {
-		Optional<Pedido> oPedidol =  pedidoRepository.findById(numero);
-		if(oPedidol.isPresent()) {
-			Pedido p = oPedidol.get();
-			p.setCEP(pedido.getCEP());
-			p.setTotal_fatura(pedido.getTotal_fatura());
-			return pedidoRepository.save(p);
+	public Cliente atualizarCliente(@PathVariable Long id, 
+			                      @RequestBody Cliente cliente) {
+		Optional<Cliente> oClientel =  clienteRepository.findById(id);
+		if(oClientel.isPresent()) {
+			Cliente c = oClientel.get();
+			c.setNome(cliente.getNome());
+			c.setCEP(cliente.getCEP());
+			return clienteRepository.save(c);
 		}
 		return null;
 	}
 
 }
-
-
